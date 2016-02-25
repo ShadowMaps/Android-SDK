@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ShadowMaps</string>
+    <string name="shadowmaps_api_key">ShadowMapsAPIExample</string>
+</resources>

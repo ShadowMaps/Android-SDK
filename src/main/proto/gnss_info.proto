@@ -1,0 +1,94 @@
+package shadowmaps;
+
+option java_package = "com.shadowmaps.util.api.protobufs";
+option java_multiple_files = true;
+option optimize_for = LITE_RUNTIME;
+
+message GroundTruth {
+  optional LocationEstimate estimate = 1;
+  optional UserInformation userInfo = 2;
+}
+
+message BatchUpdate {
+    optional string api_key = 1;
+    optional string batch_id = 2;
+    optional uint64 start_time = 3;
+    optional uint64 end_time = 4;
+    repeated LocationUpdate updates = 6;
+}
+
+message LocationUpdate {
+  repeated LocationEstimate estimates = 1;
+  repeated SatInfo satelliteInfos = 4;
+  repeated WiFiInfo wifiNetworks = 10;
+  repeated CellInfo cellNetworks = 11;
+  repeated SensorInfo sensorInfos = 5;
+  optional UserInformation userInfo = 12;
+  optional uint64 satInfoTime = 6;
+  repeated NMEAInfo nmeaInfos = 7;
+}
+
+message NMEAInfo {
+  optional uint64 timestamp = 1;
+  optional string sentence = 2;
+}
+
+message LocationEstimate {
+  optional double lat = 1;
+  optional double lon = 2;
+  optional float acc = 3;
+  optional float alt = 4;
+  optional uint64 utc = 5;
+  optional float speed = 8;
+  optional float bearing = 7;
+  optional string provider = 14;
+}
+
+message UserInformation {
+  optional string id = 1;
+  optional string api_key = 2;
+  optional string model = 3;
+}
+
+message SatInfo {
+  optional int32 prn = 1;
+  optional float azimuth = 2;
+  optional float elevation = 3;
+  optional float snr = 4;
+  optional bool almanac = 5;	
+  optional bool ephemeris = 6;
+  optional bool used = 7;
+  optional uint64 utc = 8;
+}
+
+message WiFiInfo {
+  optional string bssid = 1;
+  optional uint64 timestamp = 2;
+  optional int32 frequency = 3;
+  optional sint32 rssi = 4;
+}
+
+message CellInfo {
+  optional int32 cellid = 1;
+  optional uint64 timestamp = 2;
+  optional int32 frequency = 3;
+  optional sint32 rssi = 4;
+  }
+
+message SensorInfo {
+  optional uint64 timestamp = 6;
+  optional int32 stepsDetected = 1;
+  optional int32 stepsCounted = 2;
+  optional float temperature = 3;
+  optional float pressure = 4;
+  optional float battery = 5;
+  optional float light = 7;
+  optional string utilization = 8;
+  repeated InertialMeasurement inertial = 9;
+}
+
+message InertialMeasurement {
+  optional float x = 1;
+  optional float y = 2;
+  optional float z = 3;
+  }

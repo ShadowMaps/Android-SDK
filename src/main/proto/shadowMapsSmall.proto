@@ -1,0 +1,30 @@
+package shadowmaps;
+
+option java_package = "com.shadowmaps.util.api.protobufs";
+option java_multiple_files = true;
+option optimize_for = LITE_RUNTIME;
+
+message BatchUpdates {
+    optional string api_key = 1;
+    optional uint64 start = 2;
+    optional uint64 end = 3;
+    repeated GpsData updates = 4;
+}
+
+message GpsData {
+  repeated uint32 prns = 1 [packed = true];
+  repeated float snrs = 2 [packed = true];
+  repeated float azimuths = 3 [packed = true];
+  repeated float elevations = 4 [packed = true];
+  optional string id = 5;
+  optional string api_key = 6;
+  optional string model = 7;
+  optional float lat = 8;
+  optional float lon = 9;
+  optional float acc = 10;
+  optional float alt = 11;
+  optional uint64 utc = 12;
+  optional float speed = 13;
+  optional float heading = 14;
+  optional string provider = 15;
+}

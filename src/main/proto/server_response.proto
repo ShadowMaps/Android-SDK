@@ -1,0 +1,25 @@
+package shadowmaps;
+
+option java_package = "com.shadowmaps.util.api.protobufs";
+option java_multiple_files = true;
+option optimize_for = LITE_RUNTIME;
+
+message LocationImprovement {
+  optional double lat = 1;
+  optional double lon = 2;
+  optional float acc = 3;
+  optional double pred_lat = 4;
+  optional double pred_lon = 5;
+  optional uint64 utc = 6;
+  optional float speed = 8;
+  optional float bearing = 7;
+  optional float alt = 9;
+  optional float prob_indoors = 10;
+  optional string id = 11;
+  optional string api_key = 12;
+  optional string geocoded = 13;
+  optional bytes skyview = 14;
+  optional double pred_acc = 15;
+  repeated float cov_horiz = 16 [packed = true];
+
+}
